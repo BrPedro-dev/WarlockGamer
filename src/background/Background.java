@@ -7,7 +7,7 @@ public class Background {
     private Picture picture;
 
     public Background(){
-        picture = new Picture(10,10,"Sky_background.png");
+        picture = new Picture(10,10,"Sky_background1.jpg");
         picture.draw();
     }
 

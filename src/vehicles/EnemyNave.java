@@ -2,63 +2,55 @@ package vehicles;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class EnemyNave implements Runnable{
+public class EnemyNave implements Runnable {
 
     private Picture enemyNave;
 
-    public EnemyNave(){
-        enemyNave = new Picture(random(200),random(100), "naves.png");
+    public EnemyNave() {
+        enemyNave = new Picture(200, 30, "AlienNave.png");
         enemyNave.draw();
+        System.out.println(enemyNave.getX() + " " + enemyNave.getY());
     }
 
-
     public void Loop() throws InterruptedException {
-        while (true){
+        while (true) {
             Thread.sleep(60);
             randomMove();
         }
     }
 
-    private int random(int value){
+    private int random(int value) {
         return (int) Math.ceil(Math.random() * value);
     }
 
+    private void randomMove() {
 
-    private void randomMove(){
+        int randomDirection = random(0);
 
-        int randomDirection = random(2);
-
-        switch (randomDirection){
+        switch (randomDirection) {
             case 1:
-                enemyNave.translate(20,0);
+                if (enemyNave.getX() < 420) {
+                    enemyNave.translate(20, 0);
+                }
                 break;
             case 2:
-                enemyNave.translate(-20,0);
+                if (enemyNave.getX() > 20) {
+                    enemyNave.translate(-20, 0);
+                }
                 break;
-            /*case 3:
-                enemyNave.translate(0,10);
-                break;
-            case 4:
-                enemyNave.translate(0,-10);
-                break;*/
         }
-
     }
 
-    public int getXEnemyNave(){
+    public int getXEnemyNave() {
         return enemyNave.getX();
     }
 
-    public int getYEnemyNave(){
+    public int getYEnemyNave() {
         return enemyNave.getY();
     }
 
-    public void moveRigth() {
-        return;
-    }
-
-    public void moveLeft() {
-        return;
+    public void deleteEnemy() {
+        enemyNave.delete();
     }
 
     @Override

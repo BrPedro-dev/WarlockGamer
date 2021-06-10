@@ -1,17 +1,14 @@
 package vehicles;
 
-import background.Background;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 
 public class PlayerNave extends vehicles {
 
     private Picture playerNave;
-    private Background background;
 
     public PlayerNave(){
-        background = new Background();
-        playerNave = new Picture(200,530, "airplane (2).png");
+        playerNave = new Picture(200,635, "spacenave.png");
         playerNave.draw();
     }
 
@@ -25,16 +22,15 @@ public class PlayerNave extends vehicles {
 
     @Override
     public void moveRigth() {
-        if(background.getWidth() > playerNave.getX() + 156) {
-            playerNave.translate(30, 0);
-            System.out.println(playerNave.getX());
+        if(playerNave.getX() < 425) {
+            playerNave.translate(15, 0);
         }
     }
 
     @Override
     public void moveLeft() {
         if (playerNave.getX() > 20) {
-            playerNave.translate(-30, 0);
+            playerNave.translate(-15, 0);
             System.out.println(playerNave.getY());
         }
     }

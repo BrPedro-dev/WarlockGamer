@@ -14,10 +14,11 @@ public class Controller extends Thread implements KeyboardHandler{
     private Bullet bullet;
     private EnemyNave enemyNave;
 
-    public Controller()  {
+    public Controller(PlayerNave playerNave, Bullet bullet, EnemyNave enemyNave)  {
         keyboard = new Keyboard(this);
-        playerNave = new PlayerNave();
-
+        this.playerNave = playerNave;
+        this.bullet = bullet;
+        this.enemyNave = enemyNave;
     }
 
     public void init() {
@@ -37,17 +38,7 @@ public class Controller extends Thread implements KeyboardHandler{
         bulletEvent.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
         keyboard.addEventListener(bulletEvent);
 
-        enemyNave = new EnemyNave();
-
-
-        try {
-            bullet.moveBullet();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
     }
-
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
@@ -62,7 +53,7 @@ public class Controller extends Thread implements KeyboardHandler{
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
         if(keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE){
-            bullet = new Bullet();
+            bullet = new Bullet(playerNave.getXNave(), playerNave.getYNave(),enemyNave);
             Thread t1 = new Thread(bullet);
             t1.start();
         }
