@@ -7,12 +7,13 @@ public class Background {
     private Picture picture;
 
     public Background(){
-        picture = new Picture(10,10,"Sky_background1.jpg");
+        picture = new Picture(10,10,"background.png");
         picture.draw();
     }
 
-    public int getWidth(){
-        return picture.getWidth();
-    }
 
+    public void changeBackground(){
+        picture.load("gameover.png");
+        picture.draw();
+    }
 }

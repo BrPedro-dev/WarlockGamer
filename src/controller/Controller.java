@@ -53,9 +53,11 @@ public class Controller extends Thread implements KeyboardHandler{
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
         if(keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE){
-            bullet = new Bullet(playerNave.getXNave(), playerNave.getYNave(),enemyNave);
-            Thread t1 = new Thread(bullet);
-            t1.start();
+            if(playerNave.getStatus()) {
+                bullet = new Bullet(playerNave.getXNave(), playerNave.getYNave(), enemyNave);
+                Thread t1 = new Thread(bullet);
+                t1.start();
+            }
         }
     }
 

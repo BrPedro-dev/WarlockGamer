@@ -5,17 +5,27 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class EnemyNave implements Runnable {
 
     private Picture enemyNave;
+    private volatile boolean status = false;
+    private boolean status1 = false;
+    private int score;
 
     public EnemyNave() {
-        enemyNave = new Picture(200, 30, "AlienNave.png");
+        enemyNave = new Picture(200, 30, "enemyShip1.png");
         enemyNave.draw();
-        System.out.println(enemyNave.getX() + " " + enemyNave.getY());
     }
 
     public void Loop() throws InterruptedException {
+        int stage = 0;
+        if (random(2) == 1) {
+            stage = enemyMoveRigth();
+        } else {
+            stage = enemyMoveLeft();
+        }
         while (true) {
-            Thread.sleep(60);
-            randomMove();
+            randomMove(stage);
+            if (random(10) > 9) {
+                stage = inverseMove(stage);
+            }
         }
     }
 
@@ -23,21 +33,28 @@ public class EnemyNave implements Runnable {
         return (int) Math.ceil(Math.random() * value);
     }
 
-    private void randomMove() {
 
-        int randomDirection = random(0);
+    private void randomMove(int value) {
+
+        int randomDirection = value;
 
         switch (randomDirection) {
             case 1:
-                if (enemyNave.getX() < 420) {
-                    enemyNave.translate(20, 0);
+                try {
+                    enemyMoveLeft();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    break;
                 }
-                break;
             case 2:
-                if (enemyNave.getX() > 20) {
-                    enemyNave.translate(-20, 0);
+                try {
+                    enemyMoveRigth();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    break;
                 }
-                break;
         }
     }
 
@@ -51,14 +68,68 @@ public class EnemyNave implements Runnable {
 
     public void deleteEnemy() {
         enemyNave.delete();
+        status1 = true;
+        try {
+            score = score + 100;
+            Thread.sleep(1000);
+            createEnemy();
+            enemyNave.draw();
+            status1 = false;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private int enemyMoveLeft() throws InterruptedException {
+        if (enemyNave.getX() < 620) {
+            Thread.sleep(60);
+            enemyNave.translate(15, 0);
+            return 2;
+        }
+        return 1;
+    }
+
+    private int enemyMoveRigth() throws InterruptedException {
+        if (enemyNave.getX() > 20) {
+            Thread.sleep(60);
+            enemyNave.translate(-15, 0);
+            return 1;
+        }
+        return 2;
+    }
+
+    private int inverseMove(int number) {
+        if (number == 1) {
+            return 2;
+        }
+        return 1;
+    }
+
+    public boolean getStatus() {
+        return status1;
+    }
+
+    public void createEnemy(){
+        if(random(2) == 1){
+            enemyNave.load("enemyShip1.png");
+        } else {
+            enemyNave.load("enemyShip2.png");
+        }
+    }
+
+    public int getScore() {
+        return score;
     }
 
     @Override
     public void run() {
-        try {
-            Loop();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        while (!status) {
+            try {
+                Loop();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

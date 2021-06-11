@@ -6,6 +6,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class PlayerNave extends vehicles {
 
     private Picture playerNave;
+    private Boolean status = true;
 
     public PlayerNave(){
         playerNave = new Picture(200,635, "spacenave.png");
@@ -22,17 +23,29 @@ public class PlayerNave extends vehicles {
 
     @Override
     public void moveRigth() {
-        if(playerNave.getX() < 425) {
-            playerNave.translate(15, 0);
+        if(playerNave.getX() < 620) {
+            playerNave.translate(30, 0);
         }
     }
 
     @Override
     public void moveLeft() {
         if (playerNave.getX() > 20) {
-            playerNave.translate(-15, 0);
-            System.out.println(playerNave.getY());
+            playerNave.translate(-30, 0);
         }
+    }
+
+    public void delete(){
+        playerNave.delete();
+        status = false;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void draw(){
+        playerNave.draw();
     }
 
 }
