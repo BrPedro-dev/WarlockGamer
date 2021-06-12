@@ -37,7 +37,7 @@ public class Game extends Thread {
         ControllerMenu controller1 = new ControllerMenu(this);
         controller1.init();
         menuSound = new Sound("Musicintro.wav");
-        menuSound.play(true);
+        menuSound.play(false);
         menuSound.setLoop(60);
     }
 
@@ -76,7 +76,7 @@ public class Game extends Thread {
                     gameSound.close();
                     gameOverSound = new Sound("gameOverSound.wav");
                     gameOverSound.play(false);
-                    Thread.sleep(4000);
+                    Thread.sleep(3000);
                     gameSoundFinal = new Sound("gameOverMusicFinal.wav");
                     gameSoundFinal.play(false);
                     status = false;
