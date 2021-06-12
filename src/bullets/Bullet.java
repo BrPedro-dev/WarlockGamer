@@ -1,5 +1,6 @@
 package bullets;
 
+import Sound.Sound;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import vehicles.EnemyNave;
 
@@ -7,6 +8,7 @@ public class Bullet implements Runnable {
 
     private Picture bullet;
     private EnemyNave enemyNave;
+    private Sound bulletSound;
 
     public Bullet(Integer setX, Integer setY, EnemyNave enemyNave) {
         bullet = new Picture(setX + 40, setY - 35, "bullet(1).png");
@@ -14,6 +16,8 @@ public class Bullet implements Runnable {
     }
 
     public void moveBullet() throws InterruptedException {
+        bulletSound = new Sound("shotSound.wav");
+        bulletSound.play(false);
         while (bullet.getY() > -170) {
             Thread.sleep(40);
             bullet.translate(0, -10);
@@ -29,14 +33,6 @@ public class Bullet implements Runnable {
 
     private void drawBullet() {
         bullet.draw();
-    }
-
-    public int getXBullet() {
-        return bullet.getX();
-    }
-
-    public int getYBullet() {
-        return bullet.getY();
     }
 
     public void run() {

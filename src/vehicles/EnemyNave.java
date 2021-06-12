@@ -68,6 +68,7 @@ public class EnemyNave implements Runnable {
 
     public void deleteEnemy() {
         enemyNave.delete();
+        enemyNave.translate(random(100),0);
         status1 = true;
         try {
             score = score + 100;
