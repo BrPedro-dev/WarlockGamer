@@ -54,7 +54,7 @@ public class ControllerMenu implements KeyboardHandler {
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_C) {
-            pictures.load("CreditsFInal.png");
+            pictures.load("credits (1).png");
         } else if (keyboardEvent.getKey() == KeyboardEvent.KEY_S && status == 0){
             status = status + 1;
             game.start();

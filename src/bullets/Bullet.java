@@ -1,6 +1,6 @@
 package bullets;
 
-import Sound.Sound;
+import sound.Sound;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import vehicles.EnemyNave;
 

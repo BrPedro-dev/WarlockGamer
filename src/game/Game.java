@@ -1,6 +1,6 @@
 package game;
 
-import Sound.Sound;
+import sound.Sound;
 import background.Background;
 import bullets.Bullet;
 import bullets.EnemyBullet;
@@ -76,8 +76,8 @@ public class Game extends Thread {
                     gameSound.close();
                     gameOverSound = new Sound("gameOverSound.wav");
                     gameOverSound.play(false);
-                    Thread.sleep(3000);
-                    gameSoundFinal = new Sound("gameOverMusicFinal.wav");
+                    Thread.sleep(2500);
+                    gameSoundFinal = new Sound("gameOverMusic.wav");
                     gameSoundFinal.play(false);
                     status = false;
                 }
