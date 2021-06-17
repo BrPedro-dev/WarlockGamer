@@ -13,7 +13,7 @@ public class Background {
 
 
     public void changeBackground(){
-        picture.load("gameover.png");
+        picture.load("gameOver.png");
         picture.draw();
     }
 }

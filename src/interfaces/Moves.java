@@ -1,6 +1,6 @@
 package interfaces;
 
 public interface Moves {
-    void moveRigth();
-    void moveLeft();
+    void moveRigth(Integer speed);
+    void moveLeft(Integer speed);
 }

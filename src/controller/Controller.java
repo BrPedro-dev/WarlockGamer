@@ -43,9 +43,9 @@ public class Controller extends Thread implements KeyboardHandler{
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_RIGHT) {
-            playerNave.moveRigth();
+            playerNave.moveRigth(playerNave.getSpeed());
         } else if (keyboardEvent.getKey() == KeyboardEvent.KEY_LEFT){
-            playerNave.moveLeft();
+            playerNave.moveLeft(playerNave.getSpeed());
         }
 
     }

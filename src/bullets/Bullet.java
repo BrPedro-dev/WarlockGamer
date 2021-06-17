@@ -21,9 +21,9 @@ public class Bullet implements Runnable {
         while (bullet.getY() > -170) {
             Thread.sleep(40);
             bullet.translate(0, -10);
-            if ((enemyNave.getYEnemyNave() == bullet.getY() + 20)) {
-                    if(bullet.getX() >= enemyNave.getXEnemyNave() - 5
-                            && bullet.getX() <= enemyNave.getXEnemyNave() +85){
+            if ((enemyNave.getYNave() == bullet.getY() + 20)) {
+                    if(bullet.getX() >= enemyNave.getXNave() - 5
+                            && bullet.getX() <= enemyNave.getXNave() +85){
                     bullet.delete();
                     enemyNave.deleteEnemy();
                 }

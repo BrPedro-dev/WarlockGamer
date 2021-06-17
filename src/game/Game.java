@@ -1,5 +1,6 @@
 package game;
 
+import factory.Build;
 import sound.Sound;
 import background.Background;
 import bullets.Bullet;
@@ -23,9 +24,6 @@ public class Game extends Thread {
     private Thread t1;
     private Thread t2;
     private Thread t3;
-    private Sound menuSound;
-    private Sound gameSound;
-    private Sound gameOverSound;
     private Sound gameSoundFinal;
     private boolean status = true;
 
@@ -36,23 +34,18 @@ public class Game extends Thread {
     public void menu() {
         ControllerMenu controller1 = new ControllerMenu(this);
         controller1.init();
-        menuSound = new Sound("Musicintro.wav");
-        menuSound.play(false);
-        menuSound.setLoop(60);
+        playSound("Musicintro.wav");
     }
 
     public void start() {
-        menuSound.close();
-        gameSound = new Sound("gamesound.wav");
-        gameSound.play(false);
-        gameSound.setLoop(50);
-        background = new Background();
-        playerNave = new PlayerNave();
-        enemyNave = new EnemyNave();
-        bullet = new Bullet(playerNave.getXNave(), playerNave.getXNave(), enemyNave);
+        playSound("gamesound.wav");
+        background = Build.createBackground();
+        playerNave = Build.createPlayerNave();
+        enemyNave = Build.createEnemyNave();
+        bullet = Build.createBullet(playerNave.getXNave(), playerNave.getXNave(), enemyNave);
         controller = new Controller(playerNave, bullet, enemyNave);
         enemyBullet = new EnemyBullet(playerNave, enemyNave);
-        score = new Text(645, 15, Integer.toString(enemyNave.getScore()));
+        score = new Text(645, 15, Integer.toString(enemyNave.getEnemyDead()));
         score.setColor(Color.WHITE);
         score.draw();
         t1 = new Thread(enemyNave);
@@ -66,16 +59,14 @@ public class Game extends Thread {
 
     private void gameOver() {
         while (status) {
-            score.setText(Integer.toString(enemyNave.getScore()));
+            score.setText(Integer.toString(enemyNave.getEnemyDead()));
             score.draw();
             try {
                 Thread.sleep(500);
                 if (!playerNave.getStatus()) {
                     background.changeBackground();
                     score.delete();
-                    gameSound.close();
-                    gameOverSound = new Sound("gameOverSound.wav");
-                    gameOverSound.play(false);
+                    playSound("gameOverSound.wav");
                     Thread.sleep(2500);
                     gameSoundFinal = new Sound("gameOverMusic.wav");
                     gameSoundFinal.play(false);
@@ -85,6 +76,12 @@ public class Game extends Thread {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void playSound(String path){
+        Sound sound = Build.createSound(path);
+        sound.play(false);
+        sound.setLoop(100);
     }
 
     @Override

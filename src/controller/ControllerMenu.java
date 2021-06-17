@@ -31,7 +31,7 @@ public class ControllerMenu implements KeyboardHandler {
         KeyboardEvent credistEvent = new KeyboardEvent();
          credistEvent.setKey(KeyboardEvent.KEY_C);
          credistEvent.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
-        keyboard.addEventListener( credistEvent);
+        keyboard.addEventListener(credistEvent);
 
         KeyboardEvent rulesEvent = new KeyboardEvent();
         rulesEvent.setKey(KeyboardEvent.KEY_R);
