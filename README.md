@@ -37,8 +37,16 @@ cd /out/artifacts/Warlock
 java -jar Warlock.jar
 ```
 
-# Autor
+# Authors
 
 Pedro Henrique Oliveira Da Silva
 
-https://www.linkedin.com/in/pedro-silva-dev/
+<a href="http://www.linkedin.com/in/pedro-silva-dev" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
+
+Carla Veríssimo
+
+<a href="https://www.linkedin.com/in/carla-verissimo/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
+
+Miguel Passos Morgado
+
+<a href="https://www.linkedin.com/in/miguel-passos-morgado/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
