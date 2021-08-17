@@ -7,13 +7,13 @@ public class Background {
     private Picture picture;
 
     public Background(){
-        picture = new Picture(10,10,"background.png");
+        picture = new Picture(10,10,"resource/background.png");
         picture.draw();
     }
 
 
     public void changeBackground(){
-        picture.load("gameOver.png");
+        picture.load("resource/gameOver.png");
         picture.draw();
     }
 }

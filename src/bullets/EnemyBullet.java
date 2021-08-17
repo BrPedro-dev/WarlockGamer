@@ -18,7 +18,7 @@ public class EnemyBullet implements Runnable {
     }
 
     public void moveBullet() throws InterruptedException {
-        bullet = Build.createPicture(enemyNave.getXNave() + 40, enemyNave.getYNave()+ 35, "Ohb8MN (1) (1).png");
+        bullet = Build.createPicture(enemyNave.getXNave() + 40, enemyNave.getYNave()+ 35, "resource/Ohb8MN (1) (1).png");
         while (bullet.getY() < 650) {
             drawBullet();
             Thread.sleep(20);

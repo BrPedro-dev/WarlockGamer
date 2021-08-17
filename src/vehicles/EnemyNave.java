@@ -9,7 +9,7 @@ public class EnemyNave extends Vehicles implements Runnable {
     private int chanceToSwitchMovement = 5;
 
     public EnemyNave() {
-        super(Random.randomizer(600), 30, "enemyShip1.png");
+        super(Random.randomizer(600), 30, "resource/enemyShip1.png");
         super.draw();
     }
 
@@ -64,9 +64,9 @@ public class EnemyNave extends Vehicles implements Runnable {
 
     public void createEnemy() {
         if (Random.randomizer(2)== 1) {
-            super.changePicture("enemyShip1.png");
+            super.changePicture("resource/enemyShip1.png");
         } else {
-            super.changePicture("enemyShip2.png");
+            super.changePicture("resource/enemyShip2.png");
         }
     }
 

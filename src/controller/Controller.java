@@ -8,17 +8,22 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import vehicles.EnemyNave;
 import vehicles.PlayerNave;
 
-public class Controller extends Thread implements KeyboardHandler{
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class Controller implements KeyboardHandler{
     private PlayerNave playerNave;
     private Keyboard keyboard;
     private Bullet bullet;
     private EnemyNave enemyNave;
+    private ExecutorService singleExecutor;
 
     public Controller(PlayerNave playerNave, Bullet bullet, EnemyNave enemyNave)  {
         keyboard = new Keyboard(this);
         this.playerNave = playerNave;
         this.bullet = bullet;
         this.enemyNave = enemyNave;
+        singleExecutor = Executors.newSingleThreadExecutor();
     }
 
     public void init() {
@@ -56,8 +61,10 @@ public class Controller extends Thread implements KeyboardHandler{
             if(playerNave.getStatus()) {
                 bullet = new Bullet(playerNave.getXNave(), playerNave.getYNave(), enemyNave);
                 Thread t1 = new Thread(bullet);
+                //singleExecutor.submit(bullet);
                 t1.start();
             }
+            //singleExecutor.shutdown();
         }
     }
 

@@ -12,7 +12,7 @@ import org.academiadecodigo.simplegraphics.graphics.Text;
 import vehicles.EnemyNave;
 import vehicles.PlayerNave;
 
-public class Game extends Thread {
+public class Game implements Runnable{
 
     private PlayerNave playerNave;
     private EnemyNave enemyNave;
@@ -26,6 +26,9 @@ public class Game extends Thread {
     private Thread t3;
     private Sound gameSoundFinal;
     private boolean status = true;
+    private Sound introSound;
+    private Sound mainSound;
+    private Sound finalSound;
 
     public Game() {
         menu();
@@ -34,11 +37,14 @@ public class Game extends Thread {
     public void menu() {
         ControllerMenu controller1 = new ControllerMenu(this);
         controller1.init();
-        playSound("Musicintro.wav");
+        introSound = new Sound("resource/Musicintro.wav");
+        playSound(introSound);
     }
 
     public void start() {
-        playSound("gamesound.wav");
+        stopSound(introSound);
+        mainSound = new Sound("resource/gamesound.wav");
+        playSound(mainSound);
         background = Build.createBackground();
         playerNave = Build.createPlayerNave();
         enemyNave = Build.createEnemyNave();
@@ -66,10 +72,13 @@ public class Game extends Thread {
                 if (!playerNave.getStatus()) {
                     background.changeBackground();
                     score.delete();
-                    playSound("gameOverSound.wav");
+                    stopSound(mainSound);
+                    finalSound = new Sound("resource/gameOverSound.wav");
+                    playSound(finalSound);
                     Thread.sleep(2500);
-                    gameSoundFinal = new Sound("gameOverMusic.wav");
+                    gameSoundFinal = new Sound("resource/gameOverMusic.wav");
                     gameSoundFinal.play(false);
+                    playSound(gameSoundFinal);
                     status = false;
                 }
             } catch (InterruptedException e) {
@@ -78,10 +87,13 @@ public class Game extends Thread {
         }
     }
 
-    private void playSound(String path){
-        Sound sound = Build.createSound(path);
+    private void playSound(Sound sound){
         sound.play(false);
         sound.setLoop(100);
+    }
+
+    private void stopSound(Sound sound){
+        sound.stop();
     }
 
     @Override

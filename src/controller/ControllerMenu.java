@@ -15,7 +15,7 @@ public class ControllerMenu implements KeyboardHandler {
     private int status = 0;
 
     public ControllerMenu(Game game) {
-        pictures = new Picture(10,10,"start.png");
+        pictures = new Picture(10,10,"resource/start.png");
         pictures.draw();
         keyboard = new Keyboard(this);
         this.game = game;
@@ -61,7 +61,7 @@ public class ControllerMenu implements KeyboardHandler {
         } else if(keyboardEvent.getKey() == KeyboardEvent.KEY_Q){
             System.exit(0);
         } else if (keyboardEvent.getKey() == KeyboardEvent.KEY_R){
-            pictures.load("rules.png");
+            pictures.load("resource/rules.png");
         }
     }
 }

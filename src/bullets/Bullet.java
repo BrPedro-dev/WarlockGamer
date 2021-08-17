@@ -11,12 +11,12 @@ public class Bullet implements Runnable {
     private Sound bulletSound;
 
     public Bullet(Integer setX, Integer setY, EnemyNave enemyNave) {
-        bullet = new Picture(setX + 40, setY - 35, "bullet(1).png");
+        bullet = new Picture(setX + 40, setY - 35, "resource/bullet(1).png");
         this.enemyNave = enemyNave;
     }
 
     public void moveBullet() throws InterruptedException {
-        bulletSound = new Sound("shotSound.wav");
+        bulletSound = new Sound("resource/shotSound.wav");
         bulletSound.play(false);
         while (bullet.getY() > -170) {
             Thread.sleep(40);
@@ -42,6 +42,7 @@ public class Bullet implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        bullet.delete();
     }
 
 }

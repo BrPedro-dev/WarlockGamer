@@ -8,7 +8,7 @@ public class PlayerNave extends Vehicles {
     private Integer speed = 30;
 
     public PlayerNave(){
-        super(Random.randomizer(400),635, "spacenave.png");
+        super(Random.randomizer(400),635, "resource/spacenave.png");
         super.draw();
     }
 
