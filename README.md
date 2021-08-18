@@ -3,8 +3,7 @@
 
 # About the project
 
-Warlock was a project made in the 4 week of bootcamp and it was also 4 weeks in contact with java, it was the first in joint work. Where [Simple Graphics Library]( https://github.com/academia-de-codigo/simple-graphics) was used. 
-
+The goal was to develop a game. We did it in the 4th week of the bootcamp. we had to use Java and the [Simple Graphics Library]( https://github.com/academia-de-codigo/simple-graphics) was used. 
 
 ## Menu
 ![Menu](https://github.com/BrPedro-dev/WarlockGamer/blob/Main/Imagens/Menu.png)
